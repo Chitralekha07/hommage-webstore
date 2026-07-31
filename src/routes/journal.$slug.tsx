@@ -62,7 +62,7 @@ function JournalPostPage() {
       </Reveal>
 
       <div className="mx-auto max-w-2xl px-6 py-20">
-        {post.body.map((paragraph, i) => (
+        {post.body.map((paragraph: string, i: number) => (
           <Reveal key={i} delay={i * 80}>
             <p className="mb-8 text-base leading-loose text-foreground/80 md:text-lg">{paragraph}</p>
           </Reveal>
