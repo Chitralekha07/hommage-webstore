@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ContactRouteImport } from './routes/contact'
 import { Route as EventsRouteImport } from './routes/events'
 import { Route as HampersRouteImport } from './routes/hampers'
 import { Route as ShopRouteImport } from './routes/shop'
@@ -19,6 +20,11 @@ import { Route as JournalSlugRouteImport } from './routes/journal.$slug'
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContactRoute = ContactRouteImport.update({
+  id: '/contact',
+  path: '/contact',
   getParentRoute: () => rootRouteImport,
 } as any)
 const EventsRoute = EventsRouteImport.update({
@@ -49,6 +55,7 @@ const JournalSlugRoute = JournalSlugRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/contact': typeof ContactRoute
   '/events': typeof EventsRoute
   '/hampers': typeof HampersRoute
   '/shop': typeof ShopRoute
@@ -57,6 +64,7 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/contact': typeof ContactRoute
   '/events': typeof EventsRoute
   '/hampers': typeof HampersRoute
   '/shop': typeof ShopRoute
@@ -66,6 +74,7 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/contact': typeof ContactRoute
   '/events': typeof EventsRoute
   '/hampers': typeof HampersRoute
   '/shop': typeof ShopRoute
@@ -75,12 +84,26 @@ export interface FileRoutesById {
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
-    '/' | '/events' | '/hampers' | '/shop' | '/journal/$slug' | '/journal/'
+    | '/'
+    | '/contact'
+    | '/events'
+    | '/hampers'
+    | '/shop'
+    | '/journal/$slug'
+    | '/journal/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/events' | '/hampers' | '/shop' | '/journal/$slug' | '/journal'
+  to:
+    | '/'
+    | '/contact'
+    | '/events'
+    | '/hampers'
+    | '/shop'
+    | '/journal/$slug'
+    | '/journal'
   id:
     | '__root__'
     | '/'
+    | '/contact'
     | '/events'
     | '/hampers'
     | '/shop'
@@ -90,6 +113,7 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  ContactRoute: typeof ContactRoute
   EventsRoute: typeof EventsRoute
   HampersRoute: typeof HampersRoute
   ShopRoute: typeof ShopRoute
@@ -104,6 +128,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/contact': {
+      id: '/contact'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof ContactRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/events': {
@@ -146,6 +177,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  ContactRoute: ContactRoute,
   EventsRoute: EventsRoute,
   HampersRoute: HampersRoute,
   ShopRoute: ShopRoute,
