@@ -7,7 +7,7 @@ export function Footer() {
     <footer className="woodgrain mt-32 border-t border-gold/25">
       <div className="mx-auto grid max-w-[100rem] gap-12 px-6 py-20 md:grid-cols-[1.2fr_0.8fr_1fr] md:px-12">
         <div>
-          <img src={brand.logoTeal} alt="Hommage" className="h-20 w-auto object-contain" />
+          <img src={brand.logo} alt="Hommage" className="h-24 w-auto object-contain" />
           <p className="mt-6 max-w-sm text-sm leading-relaxed text-muted-foreground">
             A lifestyle concept store in Solapur — a tribute to tradition, culture and the artisans
             keeping our crafts alive.

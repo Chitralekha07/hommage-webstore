@@ -29,12 +29,13 @@ export function Header() {
       <div className="mx-auto grid max-w-[100rem] grid-cols-[minmax(0,1fr)_auto] items-center gap-6 px-6 md:px-12">
         <Link to="/" className="press flex min-w-0 items-center" aria-label="HOMMAGE home">
           <img
-            src={brand.logoTeal}
+            src={brand.logo}
             alt="Hommage"
             className={`w-auto object-contain transition-all duration-700 ${
-              scrolled ? "h-12 md:h-14" : "h-16 md:h-24"
+              scrolled ? "h-14 md:h-16" : "h-20 md:h-28"
             }`}
           />
+
         </Link>
 
         <nav className="hidden items-center gap-9 lg:flex">
