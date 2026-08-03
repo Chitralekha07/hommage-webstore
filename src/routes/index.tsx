@@ -2,22 +2,22 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { brand } from "@/lib/brand";
 import { LogoFormation } from "@/components/LogoFormation";
 import { Reveal } from "@/components/Reveal";
-import { journalPosts } from "@/data/journal";
+import { StoreFilm } from "@/components/StoreFilm";
 import { upcomingEvents } from "@/data/events";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Hommage — Experiential Retail House" },
+      { title: "Hommage — A Lifestyle Concept Store in Solapur" },
       {
         name: "description",
         content:
-          "Hommage is an experiential retail house of considered objects, hampers and gatherings. Summer 2026 collection now in the atelier.",
+          "Hommage is an experiential lifestyle concept store in Solapur — handcrafted objects, hampers, workshops and events that rediscover the gems of bygone eras.",
       },
-      { property: "og:title", content: "Hommage — Experiential Retail House" },
+      { property: "og:title", content: "Hommage — A Lifestyle Concept Store in Solapur" },
       {
         property: "og:description",
-        content: "Considered objects, hampers and gatherings from the Hommage atelier.",
+        content: "Handcrafted objects, hampers and events that rediscover the gems of bygone eras.",
       },
     ],
   }),
@@ -30,6 +30,7 @@ const categories = [
   { label: "Hampers", to: "/hampers" },
   { label: "Events", to: "/events" },
   { label: "Journal", to: "/journal" },
+  { label: "About", to: "/contact" },
 ] as const;
 
 function Home() {
@@ -39,7 +40,7 @@ function Home() {
 
       {/* Hero */}
       <section className="mx-auto max-w-[100rem] px-6 pb-24 md:px-12">
-        <div className="grid items-center gap-14 lg:grid-cols-[0.95fr_1.05fr] lg:gap-20">
+        <div className="grid items-center gap-14 lg:grid-cols-[1fr_0.85fr] lg:gap-20">
           <Reveal>
             <h1 className="flex items-center text-teal">
               <span className="wordmark text-[clamp(1.6rem,5vw,3.25rem)]">H</span>
@@ -66,31 +67,28 @@ function Home() {
               ))}
             </ul>
 
-            <h2 className="mt-16 text-2xl tracking-[0.18em] text-teal uppercase md:text-3xl">
-              Summer 2026
+            <h2 className="mt-16 text-2xl leading-tight tracking-[0.14em] text-teal uppercase md:text-3xl">
+              Rediscover gems of the bygone eras
             </h2>
             <p className="mt-6 max-w-xl text-base leading-loose text-foreground/75 md:text-lg">
-              <span className="border-b border-gold text-teal">"The Bright Young"</span> draws on
-              the rituals of hosting — reframing the gift, the table and the storefront as one
-              continuous gesture. Pieces of the collection are composed from slow materials:
-              hand-thrown porcelain, waxed linen, preserved bloom and antique brass, gathered and
-              rewoven for the season.
+              <span className="border-b border-gold text-teal">Hommage</span> is a tribute to
+              tradition, culture and artists — a lifestyle concept store born from a love for
+              craftsmanship and history. We serve Indian and world heritage on one platter through
+              changing themes, cognate merchandise and experiences, taking you on a journey of
+              handicrafts and art from different regions and times.
             </p>
+            <div className="mt-10 flex flex-wrap gap-4">
+              <Link to="/events" className="btn-tactile">
+                Our events
+              </Link>
+              <Link to="/contact" className="btn-tactile btn-tactile-solid">
+                Visit the store
+              </Link>
+            </div>
           </Reveal>
 
           <Reveal delay={140}>
-            <div className="relative overflow-hidden rounded-[2rem] border border-gold/25">
-              <video
-                src={brand.heroVideo}
-                autoPlay
-                muted
-                loop
-                playsInline
-                preload="auto"
-                aria-label="Hommage Summer 2026 film"
-                className="h-[62vh] w-full object-cover md:h-[78vh]"
-              />
-            </div>
+            <StoreFilm className="mx-auto w-full max-w-[26rem]" />
           </Reveal>
         </div>
       </section>
@@ -102,7 +100,7 @@ function Home() {
         <Reveal>
           <p className="eyebrow text-gold">The House</p>
           <h2 className="mt-6 max-w-3xl text-3xl leading-tight text-teal md:text-5xl">
-            A retail house built as a room first, and a collection second.
+            A room first, and a collection second.
           </h2>
         </Reveal>
 
@@ -111,7 +109,7 @@ function Home() {
             {
               title: "Shop",
               to: "/shop" as const,
-              copy: "Objects, ready-to-wear and small editions, released slowly through the year.",
+              copy: "Art, apparel, home decor and small editions — handcrafted, organic and sustainably sourced.",
             },
             {
               title: "Hampers",
@@ -121,7 +119,7 @@ function Home() {
             {
               title: "Events",
               to: "/events" as const,
-              copy: "Salons, dinners and hotel residencies where the collection is lived in for a night.",
+              copy: "Workshops, live talks and pop-ups where the craft is placed directly into your hands.",
             },
           ].map((item, i) => (
             <Reveal key={item.title} delay={i * 120}>
@@ -129,7 +127,9 @@ function Home() {
                 <div className="gold-rule" />
                 <h3 className="mt-6 text-2xl tracking-[0.12em] text-teal uppercase">{item.title}</h3>
                 <p className="mt-4 text-sm leading-loose text-muted-foreground">{item.copy}</p>
-                <span className="eyebrow mt-6 inline-block text-gold">Enter →</span>
+                <span className="eyebrow mt-6 inline-block text-gold transition-transform duration-500 group-hover:translate-x-1">
+                  Enter →
+                </span>
               </Link>
             </Reveal>
           ))}
@@ -137,7 +137,7 @@ function Home() {
       </section>
 
       {/* Upcoming */}
-      <section className="bg-ivory-deep/40 py-28">
+      <section className="woodgrain py-28">
         <div className="mx-auto max-w-[100rem] px-6 md:px-12">
           <Reveal>
             <p className="eyebrow text-gold">In the Diary</p>
@@ -159,36 +159,10 @@ function Home() {
             ))}
           </ul>
           <Reveal>
-            <Link to="/events" className="eyebrow link-underline mt-10 inline-block text-teal">
+            <Link to="/events" className="btn-tactile mt-12">
               All events
             </Link>
           </Reveal>
-        </div>
-      </section>
-
-      {/* Journal */}
-      <section className="mx-auto max-w-[100rem] px-6 py-28 md:px-12">
-        <Reveal>
-          <p className="eyebrow text-gold">Journal</p>
-        </Reveal>
-        <div className="mt-12 grid gap-12 md:grid-cols-3">
-          {journalPosts.slice(0, 3).map((post, i) => (
-            <Reveal key={post.slug} delay={i * 110}>
-              <Link to="/journal/$slug" params={{ slug: post.slug }} className="group block">
-                <div className="aspect-[4/3] overflow-hidden border border-gold/20">
-                  <img
-                    src={post.cover}
-                    alt={post.coverAlt}
-                    loading="lazy"
-                    className="h-full w-full object-cover transition-transform duration-[1600ms] ease-out group-hover:scale-105"
-                  />
-                </div>
-                <p className="eyebrow mt-6 text-gold">{post.category}</p>
-                <h3 className="mt-3 text-xl leading-snug text-teal">{post.title}</h3>
-                <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{post.excerpt}</p>
-              </Link>
-            </Reveal>
-          ))}
         </div>
       </section>
     </div>
