@@ -93,11 +93,12 @@ function ContactPage() {
               The concept tradition store.
             </h1>
             <p className="mt-8 max-w-xl text-base leading-loose text-foreground/75 md:text-lg">
-              Hommage began as a room rather than a range — a tribute to tradition, culture and the
-              artists who keep our crafts alive. Objects are arranged with the patience of a maker,
-              hampers layered for slow opening, and evenings hosted with the manners of a good host.
-              Our work travels: into hotels, heritage properties and private residencies.
+              Hommage is a lifestyle concept store in Solapur — a tribute to tradition, culture and
+              the artists who keep our crafts alive. We bring together handcrafted objects, apparel,
+              art and hampers from makers across regions and eras, and host workshops and gatherings
+              where the craft is placed directly into your hands.
             </p>
+
 
             <div className="gold-rule mt-12 max-w-md" />
 

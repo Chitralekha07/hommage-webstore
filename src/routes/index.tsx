@@ -25,13 +25,12 @@ export const Route = createFileRoute("/")({
 });
 
 const categories = [
-  { label: "Ready-to-wear", to: "/shop" },
-  { label: "Objects", to: "/shop" },
+  { label: "Collection", to: "/shop" },
   { label: "Hampers", to: "/hampers" },
   { label: "Events", to: "/events" },
   { label: "Journal", to: "/journal" },
-  { label: "About", to: "/contact" },
 ] as const;
+
 
 function Home() {
   return (
