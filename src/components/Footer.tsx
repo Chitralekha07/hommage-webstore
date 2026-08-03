@@ -1,19 +1,26 @@
 import { Link } from "@tanstack/react-router";
-import { brand, navigation } from "@/lib/brand";
+import { Instagram, MapPin, Phone, Mail, Clock } from "lucide-react";
+import { brand, contact, navigation } from "@/lib/brand";
 
 export function Footer() {
   return (
-    <footer className="mt-32 border-t border-gold/25 bg-ivory-deep/40">
-      <div className="mx-auto grid max-w-[100rem] gap-12 px-6 py-20 md:grid-cols-[1.2fr_1fr_1fr] md:px-12">
+    <footer className="woodgrain mt-32 border-t border-gold/25">
+      <div className="mx-auto grid max-w-[100rem] gap-12 px-6 py-20 md:grid-cols-[1.2fr_0.8fr_1fr] md:px-12">
         <div>
-          <div className="flex items-center gap-3">
-            <img src={brand.flower} alt="" aria-hidden="true" className="h-9 w-9 object-contain" />
-            <span className="wordmark text-base text-teal">Hommage</span>
-          </div>
+          <img src={brand.logo} alt="Hommage" className="h-24 w-auto object-contain" />
           <p className="mt-6 max-w-sm text-sm leading-relaxed text-muted-foreground">
-            An experiential retail house — objects, hampers and gatherings composed with
-            the patience of a maker and the manners of a host.
+            A lifestyle concept store in Solapur — a tribute to tradition, culture and the artisans
+            keeping our crafts alive.
           </p>
+          <a
+            href={contact.instagram}
+            target="_blank"
+            rel="noreferrer"
+            className="btn-tactile mt-8"
+          >
+            <Instagram className="h-4 w-4" />
+            {contact.instagramHandle}
+          </a>
         </div>
 
         <div>
@@ -30,17 +37,36 @@ export function Footer() {
         </div>
 
         <div>
-          <p className="eyebrow text-gold">Enquiries</p>
-          <ul className="mt-6 space-y-3 text-sm text-foreground/75">
-            <li>hello@hommage.example</li>
-            <li>Partnerships & hospitality</li>
-            <li>Press & collaborations</li>
+          <p className="eyebrow text-gold">Visit & Enquire</p>
+          <ul className="mt-6 space-y-4 text-sm text-foreground/75">
+            <li className="flex gap-3">
+              <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-copper" />
+              <a href={contact.maps} target="_blank" rel="noreferrer" className="link-underline leading-relaxed">
+                {contact.addressLines.join(", ")}
+              </a>
+            </li>
+            <li className="flex gap-3">
+              <Clock className="h-4 w-4 shrink-0 text-copper" />
+              {contact.hours}
+            </li>
+            <li className="flex gap-3">
+              <Phone className="h-4 w-4 shrink-0 text-copper" />
+              <a href={contact.phoneHref} className="link-underline">
+                {contact.phone}
+              </a>
+            </li>
+            <li className="flex gap-3">
+              <Mail className="h-4 w-4 shrink-0 text-copper" />
+              <a href={contact.emailHref} className="link-underline">
+                {contact.email}
+              </a>
+            </li>
           </ul>
         </div>
       </div>
       <div className="gold-rule" />
       <p className="px-6 py-8 text-center text-xs tracking-[0.2em] text-muted-foreground uppercase md:px-12">
-        © {new Date().getFullYear()} Hommage
+        © {new Date().getFullYear()} Hommage · Solapur
       </p>
     </footer>
   );

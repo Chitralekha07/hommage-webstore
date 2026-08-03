@@ -40,12 +40,16 @@
   --color-ring-offset-background: var(--background);
   --color-gold: var(--gold);
   --color-gold-soft: var(--gold-soft);
+  --color-copper: var(--copper);
+  --color-blush: var(--blush);
+  --color-blush-deep: var(--blush-deep);
   --color-teal: var(--teal);
   --color-teal-deep: var(--teal-deep);
   --color-ivory: var(--ivory);
   --color-ivory-deep: var(--ivory-deep);
   --font-display: "Cormorant Garamond", "Times New Roman", serif;
   --font-sans: "Jost", ui-sans-serif, system-ui, sans-serif;
+
 }
 
 :root {
@@ -55,8 +59,12 @@
   --ivory-deep: oklch(0.935 0.012 85);
   --gold: oklch(0.688 0.072 76);
   --gold-soft: oklch(0.82 0.045 82);
+  --copper: oklch(0.615 0.098 55);
+  --blush: oklch(0.905 0.032 18);
+  --blush-deep: oklch(0.812 0.055 16);
   --teal: oklch(0.436 0.031 187);
   --teal-deep: oklch(0.318 0.026 187);
+
 
   --background: oklch(0.968 0.008 85);
   --foreground: oklch(0.318 0.026 187);
@@ -187,6 +195,104 @@
   transform: none;
 }
 
+/* Tactile buttons — a gold wash slides under the label, the surface presses in */
+@utility btn-tactile {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  overflow: hidden;
+  isolation: isolate;
+  padding: 0.9rem 2rem;
+  border: 1px solid color-mix(in oklab, var(--gold) 70%, transparent);
+  font-family: var(--font-sans);
+  font-weight: 300;
+  font-size: 0.72rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--teal);
+  background: color-mix(in oklab, var(--ivory) 70%, transparent);
+  transition:
+    color 0.6s ease,
+    border-color 0.6s ease,
+    transform 0.25s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.5s ease;
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: linear-gradient(120deg, var(--teal), var(--teal-deep));
+    transform: translateY(101%);
+    transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  &:hover {
+    color: var(--ivory);
+    border-color: var(--gold);
+    box-shadow: 0 14px 30px -22px color-mix(in oklab, var(--teal) 90%, transparent);
+  }
+  &:hover::before {
+    transform: translateY(0);
+  }
+  &:active {
+    transform: translateY(1px) scale(0.985);
+  }
+}
+
+@utility btn-tactile-solid {
+  color: var(--ivory);
+  background: linear-gradient(120deg, var(--teal), var(--teal-deep));
+  &::before {
+    background: linear-gradient(120deg, var(--copper), var(--gold));
+    transform: translateY(-101%);
+  }
+  &:hover {
+    color: var(--teal-deep);
+  }
+}
+
+/* Small controls: a gentle press with a copper halo */
+@utility press {
+  transition:
+    transform 0.25s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 0.4s ease,
+    filter 0.4s ease;
+  &:hover {
+    transform: translateY(-1px);
+    filter: drop-shadow(0 4px 10px color-mix(in oklab, var(--copper) 35%, transparent));
+  }
+  &:active {
+    transform: translateY(1px) scale(0.96);
+  }
+}
+
+/* Warm wood grain wash */
+@utility woodgrain {
+  background-color: color-mix(in oklab, var(--ivory-deep) 80%, var(--blush));
+  background-image:
+    repeating-linear-gradient(
+      92deg,
+      color-mix(in oklab, var(--copper) 7%, transparent) 0 1px,
+      transparent 1px 7px
+    ),
+    repeating-linear-gradient(
+      88deg,
+      color-mix(in oklab, var(--gold) 5%, transparent) 0 1px,
+      transparent 1px 19px
+    );
+}
+
+@keyframes chime-ring {
+  0% {
+    opacity: 0.7;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.75);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .reveal {
     opacity: 1;
@@ -194,3 +300,4 @@
     transition: none;
   }
 }
+

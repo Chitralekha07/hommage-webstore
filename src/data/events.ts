@@ -1,7 +1,11 @@
-import salon from "@/assets/event-salon.jpg";
-import ballroom from "@/assets/event-ballroom.jpg";
-import hamper from "@/assets/event-hamper.jpg";
 import { brand } from "@/lib/brand";
+import workshopTable from "@/assets/event-workshop-table.jpg.asset.json";
+import workshopHands from "@/assets/event-workshop-hands.jpg.asset.json";
+import workshopGuests from "@/assets/event-workshop-guests.jpg.asset.json";
+import mirrorMosaic from "@/assets/event-mirror-mosaic.jpg.asset.json";
+import eventVideo1 from "@/assets/event-video-1.mp4.asset.json";
+import eventVideo2 from "@/assets/event-video-2.mp4.asset.json";
+import salon from "@/assets/event-salon.jpg";
 
 export type EventMedia =
   | { kind: "image"; src: string; alt: string }
@@ -16,52 +20,54 @@ export type HommageEvent = {
   media: EventMedia[];
 };
 
-/** Placeholder events — replace media and copy as real event assets arrive. */
 export const pastEvents: HommageEvent[] = [
   {
-    slug: "the-gardenia-salon",
-    title: "The Gardenia Salon",
-    date: "March 2026",
-    location: "Hommage Atelier, Mumbai",
+    slug: "mirror-mosaic-workshop",
+    title: "The Mirror Mosaic Workshop",
+    date: "Recent, at the store",
+    location: "Hommage, Balaji Sarovar Premier, Solapur",
     description:
-      "An evening of slow looking. Guests moved between plinths of new objects while a florist worked live at the marble table, composing gardenia and blossom arrangements that were gifted at the door.",
+      "An afternoon of hands at work. Guests sat around a long table with trays of cut mirror, tile nippers and grout, and slowly built their own mandala mosaic — each one setting the glass in a pattern of their own. The room filled with the sound of tapping and conversation, and everyone left carrying the piece they had made.",
     media: [
-      { kind: "image", src: salon, alt: "Guests at the Gardenia Salon among candlelit florals" },
-      { kind: "video", src: brand.heroVideo, poster: salon, alt: "Film from the Gardenia Salon" },
-      { kind: "image", src: hamper, alt: "Hamper gifted to guests at the Gardenia Salon" },
+      { kind: "image", src: workshopTable.url, alt: "Guests around the workshop table setting mirror mosaic pieces" },
+      { kind: "video", src: eventVideo1.url, poster: workshopHands.url, alt: "Film from the mirror mosaic workshop" },
+      { kind: "image", src: workshopHands.url, alt: "Hands placing cut mirror into a mosaic mandala" },
+      { kind: "video", src: eventVideo2.url, poster: workshopGuests.url, alt: "Second film from the mirror mosaic workshop" },
+      { kind: "image", src: mirrorMosaic.url, alt: "A finished mirror mosaic mandala" },
+      { kind: "image", src: workshopGuests.url, alt: "Guests with their finished mosaic artworks" },
     ],
   },
   {
-    slug: "an-evening-in-the-ballroom",
-    title: "An Evening in the Ballroom",
-    date: "December 2025",
-    location: "Heritage hotel residency",
+    slug: "the-gardenia-salon",
+    title: "The Gardenia Salon",
+    date: "Earlier this season",
+    location: "Hommage, Solapur",
     description:
-      "Our first hotel residency. A ballroom of arched windows was reset as a quiet showcase — brass plinths, teal drapery, and a menu built around the season's hampers.",
+      "An evening of slow looking. Guests moved between plinths of new objects while a florist worked live at the table, composing arrangements that were gifted at the door.",
     media: [
-      { kind: "image", src: ballroom, alt: "Ballroom set with brass plinths for the Hommage residency" },
-      { kind: "image", src: salon, alt: "Detail of the residency salon" },
+      { kind: "image", src: salon, alt: "Guests at the Gardenia Salon among candlelit florals" },
+      { kind: "video", src: brand.heroVideo, poster: salon, alt: "Film from the Gardenia Salon" },
     ],
   },
 ];
 
 export const upcomingEvents = [
   {
-    title: "The Summer Table",
-    date: "July 2026",
-    location: "Hommage Atelier",
-    note: "A seated dinner and hamper preview for collectors and collaborators. Invitations released in June.",
+    title: "Block Print Table",
+    date: "Coming soon",
+    location: "Hommage, Solapur",
+    note: "An afternoon with a printer in residence — carved blocks, natural dyes, and a length of cloth to take home.",
   },
   {
-    title: "Hommage at Sea House",
-    date: "September 2026",
-    location: "Coastal hotel residency",
-    note: "A two-week residency of objects, florals and evening rituals inside a heritage seafront property.",
+    title: "Live Talk: Gems of the Bygone Eras",
+    date: "Coming soon",
+    location: "Hommage, Solapur",
+    note: "A conversation on vanishing crafts and the artisans keeping them alive, with objects passed around the room.",
   },
   {
-    title: "Winter Atelier Week",
-    date: "November 2026",
-    location: "Hommage Atelier",
-    note: "Seven days of makers in residence, gift composition sessions and private appointments.",
+    title: "Festive Hamper Preview",
+    date: "Coming soon",
+    location: "Hommage, Solapur",
+    note: "First look at the season's hampers, composed in the store over an evening of tea and tasting.",
   },
 ];

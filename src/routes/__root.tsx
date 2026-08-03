@@ -14,6 +14,8 @@ import { reportLovableError } from "../lib/lovable-error-reporting";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { IntroDoors } from "@/components/IntroDoors";
+import { AmbientAudio } from "@/components/AmbientAudio";
+
 import { Toaster } from "@/components/ui/sonner";
 
 function NotFoundComponent() {
@@ -127,13 +129,15 @@ function RootComponent() {
   return (
     <QueryClientProvider client={queryClient}>
       <IntroDoors />
+      <AmbientAudio />
       <Header />
-      <main className="min-h-screen pt-24">
+      <main className="min-h-screen pt-28 md:pt-32">
         {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
         <Outlet />
       </main>
       <Footer />
       <Toaster position="bottom-center" />
+
     </QueryClientProvider>
   );
 }

@@ -8,8 +8,8 @@ import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { submitEnquiry } from "@/lib/enquiries.functions";
 import { enquirySchema, enquiryTypes, type EnquiryInput } from "@/lib/enquiry-schema";
-import { brand } from "@/lib/brand";
-import salon from "@/assets/event-salon.jpg";
+import { brand, contact } from "@/lib/brand";
+
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
@@ -90,32 +90,82 @@ function ContactPage() {
           <Reveal>
             <p className="eyebrow text-gold">About</p>
             <h1 className="mt-6 text-4xl leading-tight text-teal md:text-6xl">
-              A house of objects, hampers and gatherings.
+              The concept tradition store.
             </h1>
             <p className="mt-8 max-w-xl text-base leading-loose text-foreground/75 md:text-lg">
-              Hommage began as a room rather than a range. We compose retail as an experience —
-              objects arranged with the patience of a maker, hampers layered for slow opening, and
-              evenings hosted with the manners of a good host. Our work travels: into hotels,
-              heritage properties and private residencies.
+              Hommage began as a room rather than a range — a tribute to tradition, culture and the
+              artists who keep our crafts alive. Objects are arranged with the patience of a maker,
+              hampers layered for slow opening, and evenings hosted with the manners of a good host.
+              Our work travels: into hotels, heritage properties and private residencies.
             </p>
+
             <div className="gold-rule mt-12 max-w-md" />
-            <div className="mt-8 flex items-center gap-3">
-              <img src={brand.flower} alt="" aria-hidden="true" className="h-9 w-9 object-contain" />
-              <span className="wordmark text-sm text-teal">Hommage</span>
+
+            <dl className="mt-10 grid gap-6 sm:grid-cols-2">
+              <div>
+                <dt className="eyebrow text-gold">Visit</dt>
+                <dd className="mt-3 text-sm leading-relaxed text-foreground/75">
+                  <a href={contact.maps} target="_blank" rel="noreferrer" className="link-underline">
+                    {contact.addressLines.map((line) => (
+                      <span key={line} className="block">
+                        {line}
+                      </span>
+                    ))}
+                  </a>
+                </dd>
+              </div>
+              <div>
+                <dt className="eyebrow text-gold">Hours</dt>
+                <dd className="mt-3 text-sm text-foreground/75">{contact.hours}</dd>
+              </div>
+              <div>
+                <dt className="eyebrow text-gold">Speak to us</dt>
+                <dd className="mt-3 space-y-1 text-sm text-foreground/75">
+                  <a href={contact.phoneHref} className="link-underline block">
+                    {contact.phone}
+                  </a>
+                  <a href={contact.emailHref} className="link-underline block">
+                    {contact.email}
+                  </a>
+                </dd>
+              </div>
+              <div>
+                <dt className="eyebrow text-gold">Follow</dt>
+                <dd className="mt-3 text-sm text-foreground/75">
+                  <a
+                    href={contact.instagram}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="link-underline"
+                  >
+                    {contact.instagramHandle}
+                  </a>
+                </dd>
+              </div>
+            </dl>
+
+            <div className="mt-10 flex flex-wrap gap-4">
+              <a href={contact.maps} target="_blank" rel="noreferrer" className="btn-tactile">
+                Get directions
+              </a>
+              <a href={contact.phoneHref} className="btn-tactile btn-tactile-solid">
+                Call the store
+              </a>
             </div>
           </Reveal>
 
           <Reveal delay={120}>
-            <div className="aspect-[4/5] overflow-hidden border border-gold/25">
+            <div className="aspect-[4/5] overflow-hidden rounded-[2rem] border border-gold/25">
               <img
-                src={salon}
-                alt="A Hommage salon in candlelight"
-                className="h-full w-full object-cover"
+                src={brand.storefront}
+                alt="The Hommage storefront in Solapur, with etched glass doors and draped display windows"
+                className="h-full w-full object-cover transition-transform duration-[1600ms] ease-out hover:scale-[1.03]"
               />
             </div>
           </Reveal>
         </div>
       </section>
+
 
       <section className="bg-ivory-deep/40 py-24">
         <div className="mx-auto max-w-4xl px-6">
@@ -238,7 +288,7 @@ function ContactPage() {
                 <button
                   type="submit"
                   disabled={pending}
-                  className="eyebrow border border-teal px-10 py-4 text-teal transition-colors duration-500 hover:bg-teal hover:text-primary-foreground disabled:opacity-50"
+                  className="btn-tactile disabled:opacity-50"
                 >
                   {pending ? "Sending…" : "Send enquiry"}
                 </button>
