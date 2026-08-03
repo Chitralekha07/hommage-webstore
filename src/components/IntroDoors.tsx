@@ -26,17 +26,43 @@ function playChime() {
       osc.stop(t + decay + 0.1);
     };
 
-    // brass bell partials
-    strike(523.25, 0.13, 0, 3.6);
-    strike(1046.5, 0.06, 0.005, 2.8);
-    strike(1567.98, 0.03, 0.01, 2.2);
-    strike(2093, 0.015, 0.015, 1.6);
-    strike(783.99, 0.05, 0.35, 3.2);
-    setTimeout(() => void ctx.close(), 5200);
+    const ring = () => {
+      // brass bell partials
+      strike(523.25, 0.13, 0, 3.6);
+      strike(1046.5, 0.06, 0.005, 2.8);
+      strike(1567.98, 0.03, 0.01, 2.2);
+      strike(2093, 0.015, 0.015, 1.6);
+      strike(783.99, 0.05, 0.35, 3.2);
+      setTimeout(() => void ctx.close(), 5200);
+    };
+
+    if (ctx.state === "suspended") {
+      // Autoplay policy: wait for the first gesture, then ring.
+      const arm = () => {
+        window.removeEventListener("pointerdown", arm);
+        window.removeEventListener("keydown", arm);
+        void ctx.resume().then(ring).catch(() => undefined);
+      };
+      void ctx
+        .resume()
+        .then(() => {
+          if (ctx.state === "running") {
+            window.removeEventListener("pointerdown", arm);
+            window.removeEventListener("keydown", arm);
+            ring();
+          }
+        })
+        .catch(() => undefined);
+      window.addEventListener("pointerdown", arm, { once: true });
+      window.addEventListener("keydown", arm, { once: true });
+      return;
+    }
+    ring();
   } catch {
     /* audio unavailable */
   }
 }
+
 
 /**
  * First-visit only: heritage brass double doors with frosted glass over a
