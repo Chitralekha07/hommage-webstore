@@ -5,7 +5,6 @@ export const enquiryTypes = [
   { value: "collaborator", label: "Collaborator" },
   { value: "event_artist", label: "Event artist" },
   { value: "hospitality", label: "Hotel & hospitality" },
-  { value: "press", label: "Press" },
   { value: "other", label: "Other" },
 ] as const;
 
@@ -14,7 +13,8 @@ export const enquirySchema = z.object({
   email: z.string().trim().email("Please enter a valid email").max(255),
   phone: z.string().trim().max(40, "Phone number is too long").optional().or(z.literal("")),
   organisation: z.string().trim().max(150, "Organisation is too long").optional().or(z.literal("")),
-  enquiryType: z.enum(["vendor", "collaborator", "event_artist", "hospitality", "press", "other"]),
+  enquiryType: z.enum(["vendor", "collaborator", "event_artist", "hospitality", "other"]),
+
   location: z.string().trim().max(120, "Location is too long").optional().or(z.literal("")),
   message: z
     .string()

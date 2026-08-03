@@ -68,11 +68,9 @@ export function LogoFormation() {
               d="M40 230 C 120 224, 150 150, 150 96 L 300 96 C 360 96, 400 34, 450 34 C 500 34, 540 96, 600 96 L 750 96 C 750 150, 780 224, 860 230 C 780 236, 750 310, 750 364 L 600 364 C 540 364, 500 426, 450 426 C 400 426, 360 364, 300 364 L 150 364 C 150 310, 120 236, 40 230 Z"
               fill="none"
               stroke="currentColor"
-              strokeWidth="2"
-              pathLength={1}
-              strokeDasharray={1}
-              strokeDashoffset={1 - frame}
-              opacity={0.85}
+              strokeWidth="1.25"
+              opacity={frame * 0.9}
+              style={{ transform: `scale(${0.97 + frame * 0.03})`, transformOrigin: "center" }}
             />
           </svg>
 
@@ -106,14 +104,8 @@ export function LogoFormation() {
               MMAGE
             </span>
           </div>
-
-          <span
-            className="eyebrow absolute -bottom-16 left-1/2 -translate-x-1/2 whitespace-nowrap text-gold"
-            style={{ opacity: frame }}
-          >
-            Experiential Retail
-          </span>
         </div>
+
 
         <span
           className="eyebrow absolute bottom-10 left-1/2 -translate-x-1/2 text-muted-foreground"
