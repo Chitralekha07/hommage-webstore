@@ -64,7 +64,7 @@ export function LogoFormation() {
               src={brand.frame}
               alt=""
               aria-hidden="true"
-              className="pointer-events-none absolute top-1/2 left-1/2 max-w-none -translate-x-1/2 -translate-y-1/2 object-contain"
+              className="pointer-events-none absolute top-1/2 left-1/2 max-w-none object-contain"
               style={{
                 width: "175%",
                 opacity: frame * 0.95,
