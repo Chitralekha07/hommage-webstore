@@ -288,7 +288,7 @@ function ContactPage() {
                 <button
                   type="submit"
                   disabled={pending}
-                  className="eyebrow border border-teal px-10 py-4 text-teal transition-colors duration-500 hover:bg-teal hover:text-primary-foreground disabled:opacity-50"
+                  className="btn-tactile disabled:opacity-50"
                 >
                   {pending ? "Sending…" : "Send enquiry"}
                 </button>
