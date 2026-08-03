@@ -190,27 +190,21 @@ export function IntroDoors() {
 function IntroLockup({ opened, lockup }: { opened: boolean; lockup: boolean }) {
   return (
     <div className="relative flex w-full max-w-5xl items-center justify-center">
-      {/* jharokha / ogee frame — draws itself once the lockup settles */}
-      <svg
-        viewBox="0 0 900 460"
-        className="pointer-events-none absolute w-[min(94vw,60rem)] text-teal"
-        aria-hidden="true"
-        style={{ opacity: lockup ? 1 : 0, transition: "opacity 900ms ease" }}
-      >
-        <path
-          d="M40 230 C 120 224, 150 150, 150 96 L 300 96 C 360 96, 400 34, 450 34 C 500 34, 540 96, 600 96 L 750 96 C 750 150, 780 224, 860 230 C 780 236, 750 310, 750 364 L 600 364 C 540 364, 500 426, 450 426 C 400 426, 360 364, 300 364 L 150 364 C 150 310, 120 236, 40 230 Z"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="2"
-          pathLength={1}
-          strokeDasharray={1}
-          strokeDashoffset={lockup ? 0 : 1}
-          style={{ transition: "stroke-dashoffset 2600ms cubic-bezier(0.22,1,0.36,1) 200ms" }}
-          opacity={0.8}
-        />
-      </svg>
-
       <div className="relative flex items-center justify-center">
+        {/* jharokha / ogee frame from the logo — fades in once the lockup settles */}
+        <img
+          src={brand.frame}
+          alt=""
+          aria-hidden="true"
+          className="pointer-events-none absolute top-1/2 left-1/2 max-w-none object-contain"
+          style={{
+            width: "175%",
+            transform: "translate(-50%, -50%)",
+            opacity: lockup ? 0.9 : 0,
+            transition: "opacity 1400ms ease 300ms",
+          }}
+        />
+
         <span
           className="wordmark text-teal"
           style={{
