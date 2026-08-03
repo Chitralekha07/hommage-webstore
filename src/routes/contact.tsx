@@ -30,6 +30,9 @@ export const Route = createFileRoute("/contact")({
   component: ContactPage,
 });
 
+const SHEET_ENDPOINT =
+  "https://script.google.com/macros/s/AKfycbx2nJPLjFQAEgNlKooZfGezbTofo05Io4Rn_3EHhu9Y4zRTfLj6u_70Ktbjca081p2NRA/exec";
+
 const empty: EnquiryInput = {
   name: "",
   email: "",
@@ -66,6 +69,22 @@ function ContactPage() {
     setErrors({});
     setPending(true);
     try {
+      // Mirror the enquiry into the Google Sheet (opaque response — cannot be read)
+      void fetch(SHEET_ENDPOINT, {
+        method: "POST",
+        mode: "no-cors",
+        headers: { "Content-Type": "text/plain" },
+        body: JSON.stringify({
+          name: parsed.data.name,
+          email: parsed.data.email,
+          phone: parsed.data.phone ?? "",
+          organisation: parsed.data.organisation ?? "",
+          natureOfEnquiry: parsed.data.enquiryType,
+          cityProperty: parsed.data.location ?? "",
+          message: parsed.data.message,
+        }),
+      }).catch(() => {});
+
       const result = await send({ data: parsed.data });
       if (result.ok) {
         toast.success("Thank you — your enquiry has reached the house.");
