@@ -8,8 +8,8 @@ import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { submitEnquiry } from "@/lib/enquiries.functions";
 import { enquirySchema, enquiryTypes, type EnquiryInput } from "@/lib/enquiry-schema";
-import { brand } from "@/lib/brand";
-import salon from "@/assets/event-salon.jpg";
+import { brand, contact } from "@/lib/brand";
+
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
