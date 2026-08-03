@@ -141,22 +141,31 @@ function Home() {
           <Reveal>
             <p className="eyebrow text-gold">In the Diary</p>
           </Reveal>
-          <ul className="mt-12 divide-y divide-gold/20 border-y border-gold/20">
-            {upcomingEvents.map((event, i) => (
-              <Reveal as="li" key={event.title} delay={i * 90}>
-                <div className="grid gap-3 py-8 md:grid-cols-[10rem_1fr_auto] md:items-baseline md:gap-8">
-                  <span className="eyebrow text-teal">{event.date}</span>
-                  <div className="min-w-0">
-                    <h3 className="text-xl text-teal">{event.title}</h3>
-                    <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{event.note}</p>
+          {upcomingEvents.length === 0 ? (
+            <Reveal>
+              <p className="mt-8 max-w-xl text-sm leading-loose text-foreground/75">
+                Hommage will host soon. Stay tuned!
+              </p>
+            </Reveal>
+          ) : (
+            <ul className="mt-12 divide-y divide-gold/20 border-y border-gold/20">
+              {upcomingEvents.map((event, i) => (
+                <Reveal as="li" key={event.title} delay={i * 90}>
+                  <div className="grid gap-3 py-8 md:grid-cols-[10rem_1fr_auto] md:items-baseline md:gap-8">
+                    <span className="eyebrow text-teal">{event.date}</span>
+                    <div className="min-w-0">
+                      <h3 className="text-xl text-teal">{event.title}</h3>
+                      <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{event.note}</p>
+                    </div>
+                    <span className="text-xs tracking-[0.2em] text-gold uppercase">
+                      {event.location}
+                    </span>
                   </div>
-                  <span className="text-xs tracking-[0.2em] text-gold uppercase">
-                    {event.location}
-                  </span>
-                </div>
-              </Reveal>
-            ))}
-          </ul>
+                </Reveal>
+              ))}
+            </ul>
+          )}
+
           <Reveal>
             <Link to="/events" className="btn-tactile mt-12">
               All events
