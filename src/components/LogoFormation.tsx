@@ -58,24 +58,23 @@ export function LogoFormation() {
             opacity: 1 - settle * 0.15,
           }}
         >
-          {/* ogee frame from the logo, fading in on scroll */}
-          <img
-            src={brand.frame}
-            alt=""
-            aria-hidden="true"
-            className="pointer-events-none absolute w-[min(96vw,68rem)] object-contain"
-            style={{
-              opacity: frame * 0.95,
-              transform: `scale(${0.96 + frame * 0.04})`,
-            }}
-          />
-
-
           <div className="relative flex items-center justify-center">
+            {/* ogee frame from the logo, fading in on scroll */}
+            <img
+              src={brand.frame}
+              alt=""
+              aria-hidden="true"
+              className="pointer-events-none absolute top-1/2 left-1/2 max-w-none -translate-x-1/2 -translate-y-1/2 object-contain"
+              style={{
+                width: "175%",
+                opacity: frame * 0.95,
+                transform: `translate(-50%, -50%) scale(${0.96 + frame * 0.04})`,
+              }}
+            />
             <span
               className="wordmark text-teal"
               style={{
-                fontSize: "clamp(1.75rem, 6.5vw, 4.5rem)",
+                fontSize: "clamp(1.4rem, 5vw, 3.5rem)",
                 opacity: letters,
                 transform: `translateX(${(1 - letters) * 60}px)`,
                 transition: "none",
@@ -87,12 +86,12 @@ export function LogoFormation() {
               src={brand.flower}
               alt="HOMMAGE flower emblem"
               className="mx-[0.1em] object-contain"
-              style={{ width: "clamp(3rem, 10vw, 7rem)", height: "clamp(3rem, 10vw, 7rem)" }}
+              style={{ width: "clamp(2.4rem, 8vw, 5.5rem)", height: "clamp(2.4rem, 8vw, 5.5rem)" }}
             />
             <span
               className="wordmark text-teal"
               style={{
-                fontSize: "clamp(1.75rem, 6.5vw, 4.5rem)",
+                fontSize: "clamp(1.4rem, 5vw, 3.5rem)",
                 opacity: letters,
                 transform: `translateX(${(1 - letters) * -60}px)`,
                 transition: "none",
@@ -101,6 +100,7 @@ export function LogoFormation() {
               MMAGE
             </span>
           </div>
+
         </div>
 
 

@@ -14,11 +14,11 @@ export function AmbientAudio() {
   const [ready, setReady] = useState(false);
 
   useEffect(() => {
-    let stored = false;
+    let stored = true;
     try {
-      stored = localStorage.getItem(MUTE_KEY) === "1";
+      stored = localStorage.getItem(MUTE_KEY) !== "0";
     } catch {
-      stored = false;
+      stored = true;
     }
     setMuted(stored);
     setReady(true);
@@ -43,6 +43,7 @@ export function AmbientAudio() {
       window.removeEventListener("keydown", once);
     };
   }, []);
+
 
   const toggle = () => {
     const el = ref.current;
