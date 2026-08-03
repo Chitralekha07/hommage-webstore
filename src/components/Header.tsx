@@ -1,7 +1,8 @@
-import { Link, useRouterState } from "@tanstack/react-router";
+import { Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
-import { Menu, X } from "lucide-react";
-import { brand, navigation } from "@/lib/brand";
+import { Menu, X, Instagram } from "lucide-react";
+import { brand, contact, navigation } from "@/lib/brand";
+import { useRouterState } from "@tanstack/react-router";
 
 export function Header() {
   const [scrolled, setScrolled] = useState(false);
@@ -22,13 +23,18 @@ export function Header() {
   return (
     <header
       className={`fixed inset-x-0 top-0 z-50 transition-all duration-700 ${
-        scrolled ? "frosted border-b border-gold/20 py-3" : "py-6"
+        scrolled ? "frosted border-b border-gold/20 py-2" : "py-4"
       }`}
     >
       <div className="mx-auto grid max-w-[100rem] grid-cols-[minmax(0,1fr)_auto] items-center gap-6 px-6 md:px-12">
-        <Link to="/" className="flex min-w-0 items-center gap-3" aria-label="HOMMAGE home">
-          <img src={brand.flower} alt="" aria-hidden="true" className="h-8 w-8 shrink-0 object-contain" />
-          <span className="wordmark truncate text-sm text-teal sm:text-base">Hommage</span>
+        <Link to="/" className="press flex min-w-0 items-center" aria-label="HOMMAGE home">
+          <img
+            src={brand.logoTeal}
+            alt="Hommage"
+            className={`w-auto object-contain transition-all duration-700 ${
+              scrolled ? "h-12 md:h-14" : "h-16 md:h-24"
+            }`}
+          />
         </Link>
 
         <nav className="hidden items-center gap-9 lg:flex">
@@ -43,12 +49,21 @@ export function Header() {
               {item.label}
             </Link>
           ))}
+          <a
+            href={contact.instagram}
+            target="_blank"
+            rel="noreferrer"
+            aria-label="Hommage on Instagram"
+            className="press text-teal"
+          >
+            <Instagram className="h-4 w-4" />
+          </a>
         </nav>
 
         <button
           type="button"
           onClick={() => setMenuOpen((v) => !v)}
-          className="justify-self-end text-teal lg:hidden"
+          className="press justify-self-end text-teal lg:hidden"
           aria-label={menuOpen ? "Close menu" : "Open menu"}
         >
           {menuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
@@ -65,6 +80,16 @@ export function Header() {
                 </Link>
               </li>
             ))}
+            <li>
+              <a
+                href={contact.instagram}
+                target="_blank"
+                rel="noreferrer"
+                className="eyebrow text-foreground/80"
+              >
+                Instagram
+              </a>
+            </li>
           </ul>
         </nav>
       )}
