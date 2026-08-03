@@ -40,12 +40,16 @@
   --color-ring-offset-background: var(--background);
   --color-gold: var(--gold);
   --color-gold-soft: var(--gold-soft);
+  --color-copper: var(--copper);
+  --color-blush: var(--blush);
+  --color-blush-deep: var(--blush-deep);
   --color-teal: var(--teal);
   --color-teal-deep: var(--teal-deep);
   --color-ivory: var(--ivory);
   --color-ivory-deep: var(--ivory-deep);
   --font-display: "Cormorant Garamond", "Times New Roman", serif;
   --font-sans: "Jost", ui-sans-serif, system-ui, sans-serif;
+
 }
 
 :root {
