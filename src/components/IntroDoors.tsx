@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { brand } from "@/lib/brand";
 
-const VISIT_KEY = "hommage-intro-seen-v2";
+
 
 /** Soft brass chime, synthesised so no extra asset is downloaded. */
 function playChime() {
@@ -75,19 +75,9 @@ export function IntroDoors() {
   const timers = useRef<ReturnType<typeof setTimeout>[]>([]);
 
   useEffect(() => {
-    let seen = false;
-    try {
-      seen = localStorage.getItem(VISIT_KEY) === "1";
-    } catch {
-      seen = true;
-    }
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    try {
-      localStorage.setItem(VISIT_KEY, "1");
-    } catch {
-      /* storage unavailable */
-    }
-    if (seen || reduced) return;
+    if (reduced) return;
+
 
     setActive(true);
     document.body.style.overflow = "hidden";
