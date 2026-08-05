@@ -24,7 +24,7 @@ export function Footer() {
         </div>
 
         <div>
-          <p className="eyebrow text-gold">Explore</p>
+          <p className="eyebrow text-teal">Explore</p>
           <ul className="mt-6 space-y-3">
             {navigation.map((item) => (
               <li key={item.to}>
@@ -37,7 +37,7 @@ export function Footer() {
         </div>
 
         <div>
-          <p className="eyebrow text-gold">Visit & Enquire</p>
+          <p className="eyebrow text-teal">Visit & Enquire</p>
           <ul className="mt-6 space-y-4 text-sm text-foreground/75">
             <li className="flex gap-3">
               <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-copper" />
