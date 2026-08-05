@@ -1,6 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { brand } from "@/lib/brand";
-import { LogoFormation } from "@/components/LogoFormation";
 import { Reveal } from "@/components/Reveal";
 import { StoreFilm } from "@/components/StoreFilm";
 import { upcomingEvents } from "@/data/events";
@@ -35,8 +34,6 @@ const categories = [
 function Home() {
   return (
     <div>
-      <LogoFormation />
-
       {/* Hero */}
       <section className="mx-auto max-w-[100rem] px-6 pb-24 md:px-12">
         <div className="grid items-center gap-14 lg:grid-cols-[1fr_0.85fr] lg:gap-20">

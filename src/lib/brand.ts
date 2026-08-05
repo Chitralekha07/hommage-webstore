@@ -25,8 +25,8 @@ export const contact = {
     "Aasara Chowk, Model Colony, Majrewadi",
     "Solapur, Maharashtra 413004",
   ],
-  hours: "10 AM – 9 PM, daily",
-  phone: "9370848246",
+  hours: "Mon–Sat 10 AM – 10 PM · Sun 10 AM – 11 PM",
+  phone: "+91-9370848246",
   phoneHref: "tel:+919370848246",
   email: "hellohommage@gmail.com",
   emailHref: "mailto:hellohommage@gmail.com",
@@ -41,5 +41,5 @@ export const navigation = [
   { to: "/hampers", label: "Hampers" },
   { to: "/events", label: "Events" },
   { to: "/journal", label: "Journal" },
-  { to: "/contact", label: "About / Contact" },
+  { to: "/contact", label: "About" },
 ] as const;

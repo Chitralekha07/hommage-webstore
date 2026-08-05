@@ -19,7 +19,7 @@ export type HommageEvent = {
 
 export const latestEvent: HommageEvent = {
   slug: "mirror-mosaic-workshop",
-  title: "The Mirror Mosaic Workshop",
+  title: "Gujarat: Lippan Art Workshop",
   date: "Recent, at the store",
   location: "Hommage, Balaji Sarovar Premier, Solapur",
   description:
