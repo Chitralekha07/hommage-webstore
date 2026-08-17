@@ -180,6 +180,42 @@ function HampersPage() {
                 />
               </div>
 
+              <div className="space-y-2">
+                <Label htmlFor="name">
+                  Name{" "}
+                  <span className="text-xs font-normal text-muted-foreground">
+                    (we will contact you with the details)
+                  </span>
+                </Label>
+                <Input
+                  id="name"
+                  type="text"
+                  maxLength={100}
+                  required
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                  placeholder="Your name"
+                />
+              </div>
+
+              <div className="space-y-2">
+                <Label htmlFor="phone">
+                  Phone number{" "}
+                  <span className="text-xs font-normal text-muted-foreground">
+                    (we will contact you with the details)
+                  </span>
+                </Label>
+                <Input
+                  id="phone"
+                  type="tel"
+                  maxLength={30}
+                  required
+                  value={phone}
+                  onChange={(e) => setPhone(e.target.value)}
+                  placeholder="+91 9370848246"
+                />
+              </div>
+
               {error && <p className="text-sm text-destructive">{error}</p>}
 
               <button type="submit" disabled={pending} className="btn-tactile btn-tactile-solid">
