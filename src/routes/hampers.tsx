@@ -37,6 +37,8 @@ function HampersPage() {
   const [occasion, setOccasion] = useState("");
   const [customOccasion, setCustomOccasion] = useState("");
   const [priceLimit, setPriceLimit] = useState("");
+  const [name, setName] = useState("");
+  const [phone, setPhone] = useState("");
   const [pending, setPending] = useState(false);
   const [sent, setSent] = useState(false);
   const [error, setError] = useState("");
@@ -60,6 +62,19 @@ function HampersPage() {
       setError("Please enter a valid price limit.");
       return;
     }
+    if (!name.trim()) {
+      setError("Please enter your name.");
+      return;
+    }
+    const trimmedPhone = phone.trim();
+    if (!trimmedPhone) {
+      setError("Please enter your phone number.");
+      return;
+    }
+    if (trimmedPhone.replace(/[^0-9]/g, "").length < 7) {
+      setError("Please enter a valid phone number.");
+      return;
+    }
 
     setPending(true);
     try {
@@ -71,6 +86,8 @@ function HampersPage() {
           occasion: isCustom ? customOccasion.trim().slice(0, 200) : occasion,
           customOccasion: isCustom ? customOccasion.trim().slice(0, 200) : "",
           priceLimit: amount,
+          name: name.trim().slice(0, 100),
+          phone: trimmedPhone.slice(0, 30),
           submittedAt: new Date().toISOString(),
         }),
       });
