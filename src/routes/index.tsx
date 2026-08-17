@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { brand } from "@/lib/brand";
 import { Reveal } from "@/components/Reveal";
-import { StoreFilm } from "@/components/StoreFilm";
+import { HeroMedia } from "@/components/HeroMedia";
 import { upcomingEvents } from "@/data/events";
 
 export const Route = createFileRoute("/")({
@@ -84,7 +84,7 @@ function Home() {
           </Reveal>
 
           <Reveal delay={140}>
-            <StoreFilm className="mx-auto w-full max-w-[26rem]" />
+            <HeroMedia className="mx-auto w-full max-w-[26rem]" />
           </Reveal>
         </div>
       </section>
