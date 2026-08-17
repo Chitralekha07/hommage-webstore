@@ -19,6 +19,8 @@ export const brand = {
   name: "HOMMAGE",
 } as const;
 
+export const shopUrl = "https://n0e34j-wq.myshopify.com/" as const;
+
 export const contact = {
   addressLines: [
     "Balaji Sarovar Premier, Hotagi Rd",
