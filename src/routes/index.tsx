@@ -23,8 +23,10 @@ export const Route = createFileRoute("/")({
   component: Home,
 });
 
+import { shopUrl } from "@/lib/brand";
+
 const categories = [
-  { label: "Collection", to: "/shop" },
+  { label: "Collection", href: shopUrl },
   { label: "Hampers", to: "/hampers" },
   { label: "Events", to: "/events" },
   { label: "Journal", to: "/journal" },
