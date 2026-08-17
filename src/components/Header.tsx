@@ -39,17 +39,27 @@ export function Header() {
         </Link>
 
         <nav className="hidden items-center gap-9 lg:flex">
-          {navigation.map((item) => (
-            <Link
-              key={item.to}
-              to={item.to}
-              className="eyebrow link-underline text-foreground/80 transition-colors hover:text-teal"
-              activeProps={{ className: "text-teal" }}
-              activeOptions={{ exact: item.to === "/" }}
-            >
-              {item.label}
-            </Link>
-          ))}
+          {navigation.map((item) =>
+            "href" in item ? (
+              <a
+                key={item.href}
+                href={item.href}
+                className="eyebrow link-underline text-foreground/80 transition-colors hover:text-teal"
+              >
+                {item.label}
+              </a>
+            ) : (
+              <Link
+                key={item.to}
+                to={item.to}
+                className="eyebrow link-underline text-foreground/80 transition-colors hover:text-teal"
+                activeProps={{ className: "text-teal" }}
+                activeOptions={{ exact: item.to === "/" }}
+              >
+                {item.label}
+              </Link>
+            )
+          )}
           <a
             href={contact.instagram}
             target="_blank"
@@ -73,14 +83,22 @@ export function Header() {
 
       {menuOpen && (
         <nav className="frosted mt-3 border-t border-gold/20 px-6 py-6 lg:hidden">
-          <ul className="flex flex-col gap-5">
-            {navigation.map((item) => (
-              <li key={item.to}>
-                <Link to={item.to} className="eyebrow text-foreground/80" activeProps={{ className: "text-teal" }}>
-                  {item.label}
-                </Link>
-              </li>
-            ))}
+            <ul className="flex flex-col gap-5">
+            {navigation.map((item) =>
+              "href" in item ? (
+                <li key={item.href}>
+                  <a href={item.href} className="eyebrow text-foreground/80">
+                    {item.label}
+                  </a>
+                </li>
+              ) : (
+                <li key={item.to}>
+                  <Link to={item.to} className="eyebrow text-foreground/80" activeProps={{ className: "text-teal" }}>
+                    {item.label}
+                  </Link>
+                </li>
+              )
+            )}
             <li>
               <a
                 href={contact.instagram}
