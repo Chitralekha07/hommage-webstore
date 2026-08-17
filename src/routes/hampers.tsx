@@ -21,7 +21,7 @@ export const Route = createFileRoute("/hampers")({
 });
 
 const HAMPER_ENDPOINT =
-  "https://script.google.com/macros/s/AKfycbxvqWLtA3jJij4bgT5UAtVluVHhaED6xe5mrKNTmZEDnKauRyaJ13a4Q1OShFqkTQ4k/exec";
+  "https://script.google.com/macros/s/AKfycbxdNdN9sVfiYe5x289hF-4kL4sAKtZAkjH-IfGhJTdhiWayjZ7bOjPZ2fYwxqdks3I/exec";
 
 const occasions = [
   "Wedding",
