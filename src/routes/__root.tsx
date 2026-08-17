@@ -10,7 +10,7 @@ import {
 import { useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
-import { reportLovableError } from "../lib/lovable-error-reporting";
+
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { IntroDoors } from "@/components/IntroDoors";
