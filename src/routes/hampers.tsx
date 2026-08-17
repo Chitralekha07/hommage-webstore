@@ -214,7 +214,7 @@ function HampersPage() {
                   required
                   value={phone}
                   onChange={(e) => setPhone(e.target.value)}
-                  placeholder="+91 9370848246"
+                  placeholder="+91 "
                 />
               </div>
 
