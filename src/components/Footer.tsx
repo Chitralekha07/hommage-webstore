@@ -26,13 +26,21 @@ export function Footer() {
         <div>
           <p className="eyebrow text-teal">Explore</p>
           <ul className="mt-6 space-y-3">
-            {navigation.map((item) => (
-              <li key={item.to}>
-                <Link to={item.to} className="link-underline text-sm text-foreground/75">
-                  {item.label}
-                </Link>
-              </li>
-            ))}
+            {navigation.map((item) =>
+              "href" in item ? (
+                <li key={item.href}>
+                  <a href={item.href} className="link-underline text-sm text-foreground/75">
+                    {item.label}
+                  </a>
+                </li>
+              ) : (
+                <li key={item.to}>
+                  <Link to={item.to} className="link-underline text-sm text-foreground/75">
+                    {item.label}
+                  </Link>
+                </li>
+              )
+            )}
           </ul>
         </div>
 

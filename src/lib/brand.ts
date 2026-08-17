@@ -37,7 +37,7 @@ export const contact = {
 
 export const navigation = [
   { to: "/", label: "Home" },
-  { to: "/shop", label: "Shop" },
+  { href: "https://n0e34j-wq.myshopify.com/", label: "Shop" },
   { to: "/hampers", label: "Hampers" },
   { to: "/events", label: "Events" },
   { to: "/journal", label: "Journal" },
