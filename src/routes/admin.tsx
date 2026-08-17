@@ -148,7 +148,7 @@ function SignIn() {
 }
 
 function AdminPanel() {
-  const [tab, setTab] = useState<"event" | "journal" | "home">("event");
+  const [tab, setTab] = useState<"event" | "journal" | "upcoming" | "home">("event");
 
   return (
     <div className="mx-auto max-w-5xl px-6 py-24 md:px-12">
@@ -167,6 +167,7 @@ function AdminPanel() {
           [
             ["event", "Events"],
             ["journal", "Journal"],
+            ["upcoming", "Upcoming announcements"],
             ["home", "Homepage hero"],
           ] as const
         ).map(([value, label]) => (
@@ -300,9 +301,15 @@ function PostsManager({ section }: { section: PostSection }) {
   return (
     <div className="mt-12">
       <div className="flex items-center justify-between gap-4">
-        <h2 className="text-xl text-teal">{section === "event" ? "Event posts" : "Journal posts"}</h2>
+        <h2 className="text-xl text-teal">
+          {section === "event"
+            ? "Event posts"
+            : section === "journal"
+              ? "Journal posts"
+              : "Upcoming announcements"}
+        </h2>
         <button type="button" onClick={startNew} className="btn-tactile inline-flex items-center gap-2">
-          <Plus className="h-4 w-4" /> New post
+          <Plus className="h-4 w-4" /> {section === "upcoming" ? "New announcement" : "New post"}
         </button>
       </div>
 
@@ -313,7 +320,7 @@ function PostsManager({ section }: { section: PostSection }) {
             <Input id="title" value={draft.title} onChange={(e) => setDraft({ ...draft, title: e.target.value })} />
           </div>
           <div className="space-y-2">
-            <Label htmlFor="body">Text</Label>
+            <Label htmlFor="body">{section === "upcoming" ? "Message" : "Text"}</Label>
             <Textarea
               id="body"
               rows={8}

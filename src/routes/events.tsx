@@ -57,6 +57,19 @@ function EventsPage() {
     },
   });
 
+  const { data: upcoming = [] } = useQuery({
+    queryKey: ["posts", "upcoming"],
+    queryFn: async () => {
+      const { data, error } = await supabase
+        .from("posts")
+        .select("*")
+        .eq("section", "upcoming")
+        .order("created_at", { ascending: false });
+      if (error) throw error;
+      return (data ?? []) as Post[];
+    },
+  });
+
   const [featured, ...previousPosts] = posts;
 
   return (
@@ -142,9 +155,34 @@ function EventsPage() {
           <aside className="border border-gold/25 bg-ivory-deep/40 px-7 py-8 lg:sticky lg:top-32">
             <p className="eyebrow text-gold">Upcoming</p>
             <div className="gold-rule mt-5" />
-            <p className="mt-6 text-sm leading-loose text-foreground/75">
-              Hommage will host soon. Stay tuned!
-            </p>
+            {upcoming.length === 0 ? (
+              <p className="mt-6 text-sm leading-loose text-foreground/75">
+                Hommage will host soon. Stay tuned!
+              </p>
+            ) : (
+              <ul className="mt-6 divide-y divide-gold/20">
+                {upcoming.map((item) => (
+                  <li key={item.id} className="py-6 first:pt-0">
+                    <h2 className="text-lg text-teal">{item.title}</h2>
+                    {(item.event_date || item.location) && (
+                      <p className="mt-2 text-xs tracking-[0.18em] text-muted-foreground uppercase">
+                        {[item.event_date, item.location].filter(Boolean).join(" · ")}
+                      </p>
+                    )}
+                    <div className="mt-3 space-y-3 text-sm leading-loose text-foreground/75">
+                      {paragraphs(item.body).map((p, i) => (
+                        <p key={i}>{p}</p>
+                      ))}
+                    </div>
+                    {item.media_url && (
+                      <div className="mt-4">
+                        <PostMedia post={item} />
+                      </div>
+                    )}
+                  </li>
+                ))}
+              </ul>
+            )}
           </aside>
         </Reveal>
       </div>

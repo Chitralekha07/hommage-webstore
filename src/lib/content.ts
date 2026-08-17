@@ -1,4 +1,4 @@
-export type PostSection = "event" | "journal";
+export type PostSection = "event" | "journal" | "upcoming";
 export type MediaType = "image" | "video";
 export type HeroAspect = "16/9" | "4/5" | "1/1" | "full";
 
