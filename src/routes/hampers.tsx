@@ -130,6 +130,8 @@ function HampersPage() {
                   setOccasion("");
                   setCustomOccasion("");
                   setPriceLimit("");
+                  setName("");
+                  setPhone("");
                 }}
               >
                 Send another request
