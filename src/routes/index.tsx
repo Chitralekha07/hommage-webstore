@@ -53,16 +53,27 @@ function Home() {
             </h1>
 
             <ul className="mt-12 space-y-4">
-              {categories.map((item) => (
-                <li key={item.label}>
-                  <Link
-                    to={item.to}
-                    className="link-underline text-lg font-light text-foreground/80 md:text-xl"
-                  >
-                    {item.label}
-                  </Link>
-                </li>
-              ))}
+              {categories.map((item) =>
+                "href" in item ? (
+                  <li key={item.label}>
+                    <a
+                      href={item.href}
+                      className="link-underline text-lg font-light text-foreground/80 md:text-xl"
+                    >
+                      {item.label}
+                    </a>
+                  </li>
+                ) : (
+                  <li key={item.label}>
+                    <Link
+                      to={item.to}
+                      className="link-underline text-lg font-light text-foreground/80 md:text-xl"
+                    >
+                      {item.label}
+                    </Link>
+                  </li>
+                )
+              )}
             </ul>
 
             <h2 className="mt-16 text-2xl leading-tight tracking-[0.14em] text-teal uppercase md:text-3xl">
