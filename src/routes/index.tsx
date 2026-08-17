@@ -117,7 +117,7 @@ function Home() {
           {[
             {
               title: "Shop",
-              to: "/shop" as const,
+              href: shopUrl,
               copy: "Art, apparel, home decor and small editions — handcrafted, organic and sustainably sourced.",
             },
             {
@@ -132,14 +132,25 @@ function Home() {
             },
           ].map((item, i) => (
             <Reveal key={item.title} delay={i * 120}>
-              <Link to={item.to} className="group block">
-                <div className="gold-rule" />
-                <h3 className="mt-6 text-2xl tracking-[0.12em] text-teal uppercase">{item.title}</h3>
-                <p className="mt-4 text-sm leading-loose text-muted-foreground">{item.copy}</p>
-                <span className="eyebrow mt-6 inline-block text-gold transition-transform duration-500 group-hover:translate-x-1">
-                  Enter →
-                </span>
-              </Link>
+              {"href" in item ? (
+                <a href={item.href} className="group block">
+                  <div className="gold-rule" />
+                  <h3 className="mt-6 text-2xl tracking-[0.12em] text-teal uppercase">{item.title}</h3>
+                  <p className="mt-4 text-sm leading-loose text-muted-foreground">{item.copy}</p>
+                  <span className="eyebrow mt-6 inline-block text-gold transition-transform duration-500 group-hover:translate-x-1">
+                    Enter →
+                  </span>
+                </a>
+              ) : (
+                <Link to={item.to} className="group block">
+                  <div className="gold-rule" />
+                  <h3 className="mt-6 text-2xl tracking-[0.12em] text-teal uppercase">{item.title}</h3>
+                  <p className="mt-4 text-sm leading-loose text-muted-foreground">{item.copy}</p>
+                  <span className="eyebrow mt-6 inline-block text-gold transition-transform duration-500 group-hover:translate-x-1">
+                    Enter →
+                  </span>
+                </Link>
+              )}
             </Reveal>
           ))}
         </div>
