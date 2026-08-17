@@ -23,8 +23,10 @@ export const Route = createFileRoute("/")({
   component: Home,
 });
 
+import { shopUrl } from "@/lib/brand";
+
 const categories = [
-  { label: "Collection", to: "/shop" },
+  { label: "Collection", href: shopUrl },
   { label: "Hampers", to: "/hampers" },
   { label: "Events", to: "/events" },
   { label: "Journal", to: "/journal" },
@@ -51,16 +53,27 @@ function Home() {
             </h1>
 
             <ul className="mt-12 space-y-4">
-              {categories.map((item) => (
-                <li key={item.label}>
-                  <Link
-                    to={item.to}
-                    className="link-underline text-lg font-light text-foreground/80 md:text-xl"
-                  >
-                    {item.label}
-                  </Link>
-                </li>
-              ))}
+              {categories.map((item) =>
+                "href" in item ? (
+                  <li key={item.label}>
+                    <a
+                      href={item.href}
+                      className="link-underline text-lg font-light text-foreground/80 md:text-xl"
+                    >
+                      {item.label}
+                    </a>
+                  </li>
+                ) : (
+                  <li key={item.label}>
+                    <Link
+                      to={item.to}
+                      className="link-underline text-lg font-light text-foreground/80 md:text-xl"
+                    >
+                      {item.label}
+                    </Link>
+                  </li>
+                )
+              )}
             </ul>
 
             <h2 className="mt-16 text-2xl leading-tight tracking-[0.14em] text-teal uppercase md:text-3xl">
@@ -104,7 +117,7 @@ function Home() {
           {[
             {
               title: "Shop",
-              to: "/shop" as const,
+              href: shopUrl,
               copy: "Art, apparel, home decor and small editions — handcrafted, organic and sustainably sourced.",
             },
             {
@@ -119,14 +132,25 @@ function Home() {
             },
           ].map((item, i) => (
             <Reveal key={item.title} delay={i * 120}>
-              <Link to={item.to} className="group block">
-                <div className="gold-rule" />
-                <h3 className="mt-6 text-2xl tracking-[0.12em] text-teal uppercase">{item.title}</h3>
-                <p className="mt-4 text-sm leading-loose text-muted-foreground">{item.copy}</p>
-                <span className="eyebrow mt-6 inline-block text-gold transition-transform duration-500 group-hover:translate-x-1">
-                  Enter →
-                </span>
-              </Link>
+              {"href" in item ? (
+                <a href={item.href} className="group block">
+                  <div className="gold-rule" />
+                  <h3 className="mt-6 text-2xl tracking-[0.12em] text-teal uppercase">{item.title}</h3>
+                  <p className="mt-4 text-sm leading-loose text-muted-foreground">{item.copy}</p>
+                  <span className="eyebrow mt-6 inline-block text-gold transition-transform duration-500 group-hover:translate-x-1">
+                    Enter →
+                  </span>
+                </a>
+              ) : (
+                <Link to={item.to} className="group block">
+                  <div className="gold-rule" />
+                  <h3 className="mt-6 text-2xl tracking-[0.12em] text-teal uppercase">{item.title}</h3>
+                  <p className="mt-4 text-sm leading-loose text-muted-foreground">{item.copy}</p>
+                  <span className="eyebrow mt-6 inline-block text-gold transition-transform duration-500 group-hover:translate-x-1">
+                    Enter →
+                  </span>
+                </Link>
+              )}
             </Reveal>
           ))}
         </div>
