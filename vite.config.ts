@@ -19,10 +19,8 @@ export default defineConfig({
     }),
     viteReact(),
     nitro({
-      config: {
-        // Deployment target: Netlify (functions + static assets).
-        preset: "netlify",
-      },
+      // Deployment target: Netlify (serverless function + static assets).
+      preset: "netlify",
     }),
   ],
 });
