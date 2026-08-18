@@ -1,37 +1,29 @@
-# Hommage
+# Welcome to your Lovable project
 
-Experiential retail store website — TanStack Start (React 19 + Vite 8) with Supabase for auth, database and media storage.
+This project was built with [Lovable](https://lovable.dev).
 
-## Local development
+## Build with Lovable
 
-```bash
-npm install
-cp .env.example .env   # fill in your Supabase values
+Open your project in the [Lovable editor](https://lovable.dev) and keep building.
+
+- **Ship faster**: describe what you want to build and Lovable handles the code.
+- **Stay in sync**: connect the project to GitHub and every change made in Lovable is committed straight to your repository.
+- **Full ownership**: this code is yours. Push to your repository and your changes sync back into Lovable, ready for your next prompt.
+
+## Development
+
+Prefer working locally? You need Node.js and npm — [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating).
+
+```sh
+git clone <this-repository-url>
+cd <repository-name>
+npm i
 npm run dev
 ```
 
-## Build
+## Built with
 
-```bash
-npm run build   # outputs static assets to dist/ and the SSR function to .netlify/functions-internal/
-```
-
-## Deploying to Netlify
-
-- **Build command:** `npm run build`
-- **Publish directory:** `dist`
-- Functions are emitted automatically by the Nitro `netlify` preset (`netlify.toml` is included).
-
-### Environment variables (set in Netlify → Site settings → Environment variables)
-
-| Variable | Scope | Notes |
-| --- | --- | --- |
-| `VITE_SUPABASE_URL` | client | `https://<project-ref>.supabase.co` |
-| `VITE_SUPABASE_PUBLISHABLE_KEY` | client | Publishable/anon key |
-| `VITE_SUPABASE_PROJECT_ID` | client | Project ref |
-| `SUPABASE_URL` | server | Same URL, used by SSR & server functions |
-| `SUPABASE_PUBLISHABLE_KEY` | server | Same publishable key |
-| `SUPABASE_PROJECT_ID` | server | Project ref |
-| `SUPABASE_SERVICE_ROLE_KEY` | server (secret) | Required for the admin panel / media proxy. Never expose. |
-
-`VITE_*` values are inlined into the browser bundle at build time, so they must be present during the Netlify build.
+- TanStack Start
+- TypeScript
+- React
+- Tailwind CSS

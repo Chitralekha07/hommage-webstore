@@ -30,9 +30,3 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
-
-# Env & Netlify build output
-.env
-.env.*
-!.env.example
-.netlify
