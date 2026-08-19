@@ -4,7 +4,9 @@ export const Route = createFileRoute("/api/public/media/$")({
   server: {
     handlers: {
       GET: async ({ params }) => {
-        const path = (params as { _splat?: string })._splat ?? "";
+        const p2 = params as Record<string, string | undefined>;
+        const path = p2._splat ?? p2["*"] ?? "";
+        console.log("[media] params", JSON.stringify(params));
         if (!path || path.includes("..")) {
           return new Response("Not found", { status: 404 });
         }
@@ -15,6 +17,7 @@ export const Route = createFileRoute("/api/public/media/$")({
           .createSignedUrl(path, 60 * 60);
 
         if (error || !data?.signedUrl) {
+          console.log("[media] signed url error", path, error?.message);
           return new Response("Not found", { status: 404 });
         }
 
