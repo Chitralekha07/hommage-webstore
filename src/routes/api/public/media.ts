@@ -1,10 +1,10 @@
 import { createFileRoute } from "@tanstack/react-router";
 
-export const Route = createFileRoute("/api/public/media/$")({
+export const Route = createFileRoute("/api/public/media")({
   server: {
     handlers: {
-      GET: async ({ params }) => {
-        const path = (params as { _splat?: string })._splat ?? "";
+      GET: async ({ request }) => {
+        const path = new URL(request.url).searchParams.get("path") ?? "";
         if (!path || path.includes("..")) {
           return new Response("Not found", { status: 404 });
         }

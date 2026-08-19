@@ -46,7 +46,7 @@ export function aspectClass(aspect: string): string {
 export function mediaUrl(path: string | null | undefined): string | undefined {
   if (!path) return undefined;
   if (path.startsWith("http") || path.startsWith("/")) return path;
-  return `/api/public/media/${path}`;
+  return `/api/public/media?path=${encodeURIComponent(path)}`;
 }
 
 export function paragraphs(body: string): string[] {

@@ -17,7 +17,7 @@ import { Route as HampersRouteImport } from './routes/hampers'
 import { Route as ShopRouteImport } from './routes/shop'
 import { Route as JournalIndexRouteImport } from './routes/journal.index'
 import { Route as JournalSlugRouteImport } from './routes/journal.$slug'
-import { Route as ApiPublicMediaSplatRouteImport } from './routes/api/public/media.$'
+import { Route as ApiPublicMediaRouteImport } from './routes/api/public/media'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -59,9 +59,9 @@ const JournalSlugRoute = JournalSlugRouteImport.update({
   path: '/journal/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ApiPublicMediaSplatRoute = ApiPublicMediaSplatRouteImport.update({
-  id: '/api/public/media/$',
-  path: '/api/public/media/$',
+const ApiPublicMediaRoute = ApiPublicMediaRouteImport.update({
+  id: '/api/public/media',
+  path: '/api/public/media',
   getParentRoute: () => rootRouteImport,
 } as any)
 
@@ -74,7 +74,7 @@ export interface FileRoutesByFullPath {
   '/shop': typeof ShopRoute
   '/journal/$slug': typeof JournalSlugRoute
   '/journal/': typeof JournalIndexRoute
-  '/api/public/media/$': typeof ApiPublicMediaSplatRoute
+  '/api/public/media': typeof ApiPublicMediaRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -85,7 +85,7 @@ export interface FileRoutesByTo {
   '/shop': typeof ShopRoute
   '/journal/$slug': typeof JournalSlugRoute
   '/journal': typeof JournalIndexRoute
-  '/api/public/media/$': typeof ApiPublicMediaSplatRoute
+  '/api/public/media': typeof ApiPublicMediaRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -97,7 +97,7 @@ export interface FileRoutesById {
   '/shop': typeof ShopRoute
   '/journal/$slug': typeof JournalSlugRoute
   '/journal/': typeof JournalIndexRoute
-  '/api/public/media/$': typeof ApiPublicMediaSplatRoute
+  '/api/public/media': typeof ApiPublicMediaRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -110,7 +110,7 @@ export interface FileRouteTypes {
     | '/shop'
     | '/journal/$slug'
     | '/journal/'
-    | '/api/public/media/$'
+    | '/api/public/media'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -121,7 +121,7 @@ export interface FileRouteTypes {
     | '/shop'
     | '/journal/$slug'
     | '/journal'
-    | '/api/public/media/$'
+    | '/api/public/media'
   id:
     | '__root__'
     | '/'
@@ -132,7 +132,7 @@ export interface FileRouteTypes {
     | '/shop'
     | '/journal/$slug'
     | '/journal/'
-    | '/api/public/media/$'
+    | '/api/public/media'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -144,7 +144,7 @@ export interface RootRouteChildren {
   ShopRoute: typeof ShopRoute
   JournalSlugRoute: typeof JournalSlugRoute
   JournalIndexRoute: typeof JournalIndexRoute
-  ApiPublicMediaSplatRoute: typeof ApiPublicMediaSplatRoute
+  ApiPublicMediaRoute: typeof ApiPublicMediaRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -205,11 +205,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof JournalSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/api/public/media/$': {
-      id: '/api/public/media/$'
-      path: '/api/public/media/$'
-      fullPath: '/api/public/media/$'
-      preLoaderRoute: typeof ApiPublicMediaSplatRouteImport
+    '/api/public/media': {
+      id: '/api/public/media'
+      path: '/api/public/media'
+      fullPath: '/api/public/media'
+      preLoaderRoute: typeof ApiPublicMediaRouteImport
       parentRoute: typeof rootRouteImport
     }
   }
@@ -224,7 +224,7 @@ const rootRouteChildren: RootRouteChildren = {
   ShopRoute: ShopRoute,
   JournalSlugRoute: JournalSlugRoute,
   JournalIndexRoute: JournalIndexRoute,
-  ApiPublicMediaSplatRoute: ApiPublicMediaSplatRoute,
+  ApiPublicMediaRoute: ApiPublicMediaRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
