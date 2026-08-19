@@ -5,7 +5,7 @@ export const Route = createFileRoute("/api/public/media/$")({
     handlers: {
       GET: async ({ params }) => {
         const p2 = params as Record<string, string | undefined>;
-        const path = p2._splat ?? p2["*"] ?? "";
+        const path = p2["_splat"] ?? p2["*"] ?? "";
         console.log("[media] params", JSON.stringify(params));
         if (!path || path.includes("..")) {
           return new Response("Not found", { status: 404 });
