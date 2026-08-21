@@ -46,13 +46,13 @@ export function HeroMedia({ className = "" }: { className?: string }) {
           playsInline
           preload="auto"
           aria-label="Hommage hero film"
-          className={`${frame} h-auto w-full object-cover`}
+          className={`${frame} h-auto w-full ${fit}`}
         />
       ) : (
         <img
           src={src}
           alt="Inside the Hommage store in Solapur"
-          className={`${frame} h-auto w-full object-cover`}
+          className={`${frame} h-auto w-full ${fit}`}
         />
       )}
       <span className="pointer-events-none absolute inset-0 rounded-[2.5rem] ring-1 ring-gold/25 ring-inset" />
