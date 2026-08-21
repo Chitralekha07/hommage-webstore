@@ -29,7 +29,9 @@ export function HeroMedia({ className = "" }: { className?: string }) {
   const { data } = useSiteSettings();
   const src = mediaUrl(data?.hero_url) ?? storePano;
   const isVideo = Boolean(data?.hero_url) && data?.hero_type === "video";
-  const frame = aspectClass(data?.hero_url ? (data.hero_aspect ?? "full") : "pano");
+  const aspect = data?.hero_url ? (data.hero_aspect ?? "full") : "pano";
+  const frame = aspectClass(aspect);
+  const fit = aspect === "pano" ? "object-contain" : "object-cover";
 
   return (
     <div
