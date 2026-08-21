@@ -24,12 +24,6 @@ export const Route = createFileRoute("/")({
 
 import { shopUrl } from "@/lib/brand";
 
-const categories = [
-  { label: "Collection", href: shopUrl },
-  { label: "Hampers", to: "/hampers" },
-  { label: "Events", to: "/events" },
-  { label: "Journal", to: "/journal" },
-] as const;
 
 
 function Home() {
