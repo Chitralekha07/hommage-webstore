@@ -33,7 +33,8 @@ export const heroAspects: { value: HeroAspect; label: string }[] = [
 export function aspectClass(aspect: string): string {
   switch (aspect) {
     case "pano":
-      return "aspect-[16/9] sm:aspect-[21/9] lg:aspect-[32/9]";
+      // Full panorama — no crop, the media keeps its natural width/height ratio
+      return "";
     case "16/9":
       return "aspect-[16/9]";
     case "4/5":
