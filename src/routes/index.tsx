@@ -1,7 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { brand } from "@/lib/brand";
 import { Reveal } from "@/components/Reveal";
-import { HeroMedia } from "@/components/HeroMedia";
+import { HeroMedia, useHeroAspect } from "@/components/HeroMedia";
 import { upcomingEvents } from "@/data/events";
 
 export const Route = createFileRoute("/")({
@@ -34,52 +33,22 @@ const categories = [
 
 
 function Home() {
+  const aspect = useHeroAspect();
+  const pano = aspect === "pano";
+
   return (
     <div>
       {/* Hero */}
-      <section className="mx-auto max-w-[100rem] px-6 pb-24 md:px-12">
-        <div className="grid items-center gap-14 lg:grid-cols-[1fr_0.85fr] lg:gap-20">
+      {pano ? (
+        <section className="mx-auto max-w-[100rem] px-6 pb-24 md:px-12">
           <Reveal>
-            <h1 className="flex items-center text-teal">
-              <span className="wordmark text-[clamp(1.6rem,5vw,3.25rem)]">H</span>
-              <img
-                src={brand.flower}
-                alt=""
-                aria-hidden="true"
-                className="mx-[0.08em] h-[clamp(2.4rem,7vw,4.6rem)] w-[clamp(2.4rem,7vw,4.6rem)] object-contain"
-              />
-              <span className="wordmark text-[clamp(1.6rem,5vw,3.25rem)]">MMAGE</span>
-              <span className="sr-only">Hommage</span>
-            </h1>
-
-            <ul className="mt-12 space-y-4">
-              {categories.map((item) =>
-                "href" in item ? (
-                  <li key={item.label}>
-                    <a
-                      href={item.href}
-                      className="link-underline text-lg font-light text-foreground/80 md:text-xl"
-                    >
-                      {item.label}
-                    </a>
-                  </li>
-                ) : (
-                  <li key={item.label}>
-                    <Link
-                      to={item.to}
-                      className="link-underline text-lg font-light text-foreground/80 md:text-xl"
-                    >
-                      {item.label}
-                    </Link>
-                  </li>
-                )
-              )}
-            </ul>
-
-            <h2 className="mt-16 text-2xl leading-tight tracking-[0.14em] text-teal uppercase md:text-3xl">
+            <HeroMedia className="w-full" />
+          </Reveal>
+          <Reveal delay={140}>
+            <h2 className="mt-14 text-2xl leading-tight tracking-[0.14em] text-teal uppercase md:text-3xl">
               Rediscover gems of the bygone eras
             </h2>
-            <p className="mt-6 max-w-xl text-base leading-loose text-foreground/75 md:text-lg">
+            <p className="mt-6 max-w-3xl text-base leading-loose text-foreground/75 md:text-lg">
               <span className="border-b border-gold text-teal">Hommage</span> is a tribute to
               tradition, culture and artists — a lifestyle concept store born from a love for
               craftsmanship and history. We serve Indian and world heritage on one platter through
@@ -95,12 +64,37 @@ function Home() {
               </Link>
             </div>
           </Reveal>
+        </section>
+      ) : (
+        <section className="mx-auto max-w-[100rem] px-6 pb-24 md:px-12">
+          <div className="grid items-center gap-14 lg:grid-cols-[1fr_0.85fr] lg:gap-20">
+            <Reveal>
+              <h2 className="text-2xl leading-tight tracking-[0.14em] text-teal uppercase md:text-3xl">
+                Rediscover gems of the bygone eras
+              </h2>
+              <p className="mt-6 max-w-xl text-base leading-loose text-foreground/75 md:text-lg">
+                <span className="border-b border-gold text-teal">Hommage</span> is a tribute to
+                tradition, culture and artists — a lifestyle concept store born from a love for
+                craftsmanship and history. We serve Indian and world heritage on one platter through
+                changing themes, cognate merchandise and experiences, taking you on a journey of
+                handicrafts and art from different regions and times.
+              </p>
+              <div className="mt-10 flex flex-wrap gap-4">
+                <Link to="/events" className="btn-tactile">
+                  Our events
+                </Link>
+                <Link to="/contact" className="btn-tactile btn-tactile-solid">
+                  Visit the store
+                </Link>
+              </div>
+            </Reveal>
 
-          <Reveal delay={140}>
-            <HeroMedia className="mx-auto w-full max-w-[26rem]" />
-          </Reveal>
-        </div>
-      </section>
+            <Reveal delay={140}>
+              <HeroMedia className="mx-auto w-full max-w-[26rem]" />
+            </Reveal>
+          </div>
+        </section>
+      )}
 
       <div className="gold-rule mx-auto max-w-[100rem]" />
 

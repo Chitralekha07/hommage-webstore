@@ -78,6 +78,14 @@ export function IntroDoors() {
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     if (reduced) return;
 
+    // Play once per browsing session — returning from the Shopify store in the
+    // same tab, or moving between pages, must not replay the doors.
+    try {
+      if (sessionStorage.getItem("hommage-intro-seen")) return;
+      sessionStorage.setItem("hommage-intro-seen", "1");
+    } catch {
+      /* storage unavailable — fall through and play */
+    }
 
     setActive(true);
     document.body.style.overflow = "hidden";
