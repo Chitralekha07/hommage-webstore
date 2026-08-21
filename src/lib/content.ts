@@ -1,6 +1,6 @@
 export type PostSection = "event" | "journal" | "upcoming";
 export type MediaType = "image" | "video";
-export type HeroAspect = "16/9" | "4/5" | "1/1" | "full";
+export type HeroAspect = "16/9" | "4/5" | "1/1" | "full" | "pano";
 
 export type Post = {
   id: string;
@@ -23,6 +23,7 @@ export type SiteSettings = {
 };
 
 export const heroAspects: { value: HeroAspect; label: string }[] = [
+  { value: "pano", label: "Panorama — full-width banner across the top" },
   { value: "16/9", label: "16:9 — cinematic" },
   { value: "4/5", label: "4:5 — portrait" },
   { value: "1/1", label: "1:1 — square" },
@@ -31,6 +32,8 @@ export const heroAspects: { value: HeroAspect; label: string }[] = [
 
 export function aspectClass(aspect: string): string {
   switch (aspect) {
+    case "pano":
+      return "aspect-[16/9] sm:aspect-[21/9] lg:aspect-[32/9]";
     case "16/9":
       return "aspect-[16/9]";
     case "4/5":

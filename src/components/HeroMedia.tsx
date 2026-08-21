@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
-import { StoreFilm } from "@/components/StoreFilm";
 import { aspectClass, mediaUrl, type SiteSettings } from "@/lib/content";
+import storePano from "@/assets/store-pano.jpg";
 
 export function useSiteSettings() {
   return useQuery({
@@ -18,19 +18,24 @@ export function useSiteSettings() {
   });
 }
 
+/** Aspect currently in use — "pano" renders as a full-width banner on the home page. */
+export function useHeroAspect(): string {
+  const { data } = useSiteSettings();
+  if (!data?.hero_url) return "pano";
+  return data.hero_aspect ?? "full";
+}
+
 export function HeroMedia({ className = "" }: { className?: string }) {
   const { data } = useSiteSettings();
-  const src = mediaUrl(data?.hero_url);
-
-  if (!src) return <StoreFilm className={className} />;
-
-  const frame = aspectClass(data?.hero_aspect ?? "full");
+  const src = mediaUrl(data?.hero_url) ?? storePano;
+  const isVideo = Boolean(data?.hero_url) && data?.hero_type === "video";
+  const frame = aspectClass(data?.hero_url ? (data.hero_aspect ?? "full") : "pano");
 
   return (
     <div
       className={`relative overflow-hidden rounded-[2.5rem] border border-gold/30 shadow-[0_30px_80px_-50px_color-mix(in_oklab,var(--teal)_70%,transparent)] ${className}`}
     >
-      {data?.hero_type === "video" ? (
+      {isVideo ? (
         <video
           src={src}
           autoPlay
@@ -42,7 +47,11 @@ export function HeroMedia({ className = "" }: { className?: string }) {
           className={`${frame} h-auto w-full object-cover`}
         />
       ) : (
-        <img src={src} alt="Hommage" className={`${frame} h-auto w-full object-cover`} />
+        <img
+          src={src}
+          alt="Inside the Hommage store in Solapur"
+          className={`${frame} h-auto w-full object-cover`}
+        />
       )}
       <span className="pointer-events-none absolute inset-0 rounded-[2.5rem] ring-1 ring-gold/25 ring-inset" />
     </div>
